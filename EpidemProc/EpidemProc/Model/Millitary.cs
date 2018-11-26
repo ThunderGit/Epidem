@@ -13,7 +13,7 @@ namespace EpidemProc
         public string Name { get; set; }
         public bool IsPrivate { get; set; }
         public int CorruptionLevel { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
     }

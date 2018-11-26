@@ -10,7 +10,7 @@ namespace EpidemProc
     {
         public int Id { get; set; }
         public int CitizenId { get; set; }
-        public int HospitalId { get; set; }
+        public int MilitaryId { get; set; }
         public bool Initiative { get; set; }
         public int Quality { get; set; }
     }

@@ -18,7 +18,7 @@ namespace EpidemProc
         public bool HardWorker { get; set; }
         public bool SickLeave { get; set; }
         public bool Hospitalized { get; set; }
-        public int CityId { get; set; }
+        public int FactureId { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
     }

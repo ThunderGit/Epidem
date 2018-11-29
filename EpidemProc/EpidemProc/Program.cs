@@ -14,28 +14,38 @@ namespace EpidemProc
 {
     class Program
     {
-        private Citizen[] people;
+        //static Table[] All;
+        static Citizen[] All;
+        static Citizen[] Infected;
+        static Citizen[] Healthy;
+        static Policeman[] P;
+        static Doctor[] D;
+        static Troop[] T ;
+        static Police[] _Police;
+        static Hospital[] _Hospital;
+        static Millitary[] _Millitary;
 
-
-
-
-
+        static void LoadData()
+        {
+            All = null;
+            Infected = null;
+            Healthy = null;
+            P = null;
+            D = null;
+            T = null;
+            _Police = null;
+            _Hospital = null;
+            _Millitary = null;
+            Loader loader = new Loader(@"DESKTOP-SH16UUG", "PANDEMIC_INC");
+            loader.Load(ref All, ref Infected, ref Healthy, ref P, ref D, ref T, ref _Police, ref _Hospital, ref _Millitary);
+            //All = loader.Load<Citizen>();
+        }
 
         static void Main(string[] args)
         {
             //нужно достать эти данные
-            Citizen[] All=null;
-            Citizen[] Infected = null;
-            Citizen[] Healthy = null;
-            Policeman[] P = null;
-            Doctor[] D = null;
-            Troop[] T = null;
-            Police[] _Police = null;
-            Hospital[] _Hospital = null;
-            Millitary[] _Millitary = null;
 
-
-            Loader.Load(ref All,ref Infected,ref Healthy, ref P, ref D, ref T, ref _Police, ref _Hospital, ref _Millitary);
+            LoadData();
             Console.WriteLine(All.Length);
             Console.WriteLine(P.Length);
             Console.WriteLine(D.Length);

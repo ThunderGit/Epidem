@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\HealthStatus.cs" />
     <Compile Include="Enum\Profession.cs" />
+    <Compile Include="Loader.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Troop.cs" />
     <Compile Include="Model\Policeman.cs" />

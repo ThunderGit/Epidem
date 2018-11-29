@@ -53,6 +53,7 @@ namespace EpidemProc
             Console.WriteLine(_Police.Length);
             Console.WriteLine(_Hospital.Length);
             Console.WriteLine(_Millitary.Length);
+            Console.ReadKey();
         }
     }
 }

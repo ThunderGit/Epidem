@@ -29,20 +29,8 @@ namespace EpidemProc
         public void Load(ref Citizen[] All, ref Citizen[] Infected, ref Citizen[] Healthy, ref Policeman[] P, ref Doctor[] D, ref Troop[] T, ref Police[] _Police,
     ref Hospital[] _Hospital, ref Millitary[] _Military)
         {
-            //Первоначальное хранилище  во время вытягивания
-            List<Citizen> citizenList = new List<Citizen>();
-            List<Policeman> policemanList = new List<Policeman>();
-            List<Doctor> doctorList = new List<Doctor>();
-            List<Troop> troopList = new List<Troop>();
-            List<Police> policeList = new List<Police>();
-            List<Hospital> hospitalList = new List<Hospital>();
-            List<Millitary> militaryList = new List<Millitary>();
-
-
             try
             {
-                cn.Open();
-
                 //Вытягивание
                 All = GetData<Citizen>(Citizen.PrepareCommand, Citizen.Get).ToArray();
                 P = GetData<Policeman>(Policeman.PrepareCommand, Policeman.Get).ToArray();
@@ -61,15 +49,24 @@ namespace EpidemProc
                 }
                 Infected = infectedList.ToArray();
                 Healthy = healthyList.ToArray();
-
-                Console.WriteLine("Success\n");
-                cn.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error!\n" + ex.Message);
+                Console.WriteLine(ex.Message);
             }
+        }
 
+        public Citizen[] Load(ref Citizen[] All)
+        {
+            try
+            {
+                return GetData<Citizen>(Citizen.PrepareCommand, Citizen.Get).ToArray();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
 
 
@@ -77,6 +74,7 @@ namespace EpidemProc
         delegate SqlCommand PrepareCommand(SqlCommand command);
         private static List<T> GetData<T>(PrepareCommand PrepareCommand, Get<T> Get)
         {
+            cn.Open();
             List<T>  EntryList = new List<T>();
             SqlCommand command = new SqlCommand();
             command.Connection = cn;
@@ -92,6 +90,7 @@ namespace EpidemProc
             }
             //Конец вытягивания
             reader.Close();
+            cn.Close();
             return EntryList;
         }
     }

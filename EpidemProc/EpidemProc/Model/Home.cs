@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EpidemProc
 {
-    class Facture
+    class Home
     {
         public int Id { get; set; }
         public int X { get; set; }
@@ -18,18 +18,18 @@ namespace EpidemProc
 
         public static SqlCommand PrepareCommand(SqlCommand command)
         {
-            Facture _facture = new Facture();
-            command.CommandText = @"SELECT ID, X, Y from dbo.FACTURE";
+            Home _home = new Home();
+            command.CommandText = @"SELECT ID, X, Y from dbo.HOME";
 
-            command.Parameters.Add("ID", SqlDbType.Int).Value = _facture.Id;
-            command.Parameters.Add("X",  SqlDbType.Int).Value = _facture.X;
-            command.Parameters.Add("Y",  SqlDbType.Int).Value = _facture.Y;
+            command.Parameters.Add("ID", SqlDbType.Int).Value = _home.Id;
+            command.Parameters.Add("X",  SqlDbType.Int).Value = _home.X;
+            command.Parameters.Add("Y",  SqlDbType.Int).Value = _home.Y;
             return command;
         }
-        public static Facture Get(SqlDataReader reader)
+        public static Home Get(SqlDataReader reader)
         {
             int i = 0;
-            return new Facture
+            return new Home
             {
                 Id = reader.GetInt32(i++),
                 X = reader.GetInt32(i++),

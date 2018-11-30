@@ -7,9 +7,7 @@ namespace EpidemProc
 {
     class Program
     {
-        static Citizen[] All;
-        static Citizen[] Infected;
-        static Citizen[] Healthy;
+        static Citizen[] _Citizens;
         static Policeman[] _Policeman;
         static Doctor[] _Doctor;
         static Troop[] _Troop ;
@@ -22,7 +20,7 @@ namespace EpidemProc
         static void LoadData()
         {
             Loader loader = new Loader(@"DESKTOP-SH16UUG", "PANDEMIC_INC");
-            loader.Load(ref All, ref Infected, ref Healthy, ref _Policeman, ref _Doctor, ref _Troop, ref _Police, ref _Hospital, ref _Millitary, ref _Facture, ref _Home);
+            loader.Load(ref _Citizens, ref _Policeman, ref _Doctor, ref _Troop, ref _Police, ref _Hospital, ref _Millitary, ref _Facture, ref _Home);
             //All = loader.Load<Citizen>();
         }
 
@@ -30,9 +28,7 @@ namespace EpidemProc
         {
             //нужно достать эти данные
             LoadData();
-            Console.WriteLine(All.Length);
-            Console.WriteLine(Infected.Length);
-            Console.WriteLine(Healthy.Length);
+            Console.WriteLine(_Citizens.Length);
             Console.WriteLine(_Policeman.Length);
             Console.WriteLine(_Doctor.Length);
             Console.WriteLine(_Troop.Length);

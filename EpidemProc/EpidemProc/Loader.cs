@@ -22,13 +22,13 @@ namespace EpidemProc
             cn.ConnectionString = connect.ConnectionString;
         }
 
-        public void Load(ref Citizen[] All, ref Citizen[] Infected, ref Citizen[] Healthy, ref Policeman[] P, ref Doctor[] D, ref Troop[] T, ref Police[] _Police,
+        public void Load(ref Citizen[] _Citizens, ref Policeman[] P, ref Doctor[] D, ref Troop[] T, ref Police[] _Police,
     ref Hospital[] _Hospital, ref Millitary[] _Military, ref Facture[] _Facture, ref Home[] _home)
         {
             try
             {
                 //Вытягивание
-                All = GetData<Citizen>(Citizen.PrepareCommand, Citizen.Get).ToArray();
+                _Citizens = GetData<Citizen>(Citizen.PrepareCommand, Citizen.Get).ToArray();
                 P = GetData<Policeman>(Policeman.PrepareCommand, Policeman.Get).ToArray();
                 D = GetData<Doctor>(Doctor.PrepareCommand, Doctor.Get).ToArray();
                 T = GetData<Troop>(Troop.PrepareCommand, Troop.Get).ToArray();
@@ -37,16 +37,6 @@ namespace EpidemProc
                 _Military = GetData<Millitary>(Millitary.PrepareCommand, Millitary.Get).ToArray();
                 _Facture = GetData<Facture>(Facture.PrepareCommand, Facture.Get).ToArray();
                 _home = GetData<Home>(Home.PrepareCommand, Home.Get).ToArray();
-
-                List<Citizen> infectedList = new List<Citizen>();
-                List<Citizen> healthyList = new List<Citizen>();
-                foreach (Citizen citiz in All)
-                {
-                    if (citiz.WasSick) infectedList.Add(citiz);
-                    else healthyList.Add(citiz);
-                }
-                Infected = infectedList.ToArray();
-                Healthy = healthyList.ToArray();
             }
             catch (Exception ex)
             {

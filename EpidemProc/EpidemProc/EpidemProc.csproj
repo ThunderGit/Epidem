@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\MillitaryStatus.cs" />
+    <Compile Include="Enum\PoliceStatus.cs" />
     <Compile Include="Enum\HealthStatus.cs" />
     <Compile Include="Enum\Profession.cs" />
     <Compile Include="Loader.cs" />

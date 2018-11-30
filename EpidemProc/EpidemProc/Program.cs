@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using EpidemProc.Models;
 
 
 
@@ -14,7 +7,6 @@ namespace EpidemProc
 {
     class Program
     {
-        //static Table[] All;
         static Citizen[] All;
         static Citizen[] Infected;
         static Citizen[] Healthy;
@@ -37,7 +29,6 @@ namespace EpidemProc
         static void Main(string[] args)
         {
             //нужно достать эти данные
-
             LoadData();
             Console.WriteLine(All.Length);
             Console.WriteLine(Infected.Length);

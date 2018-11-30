@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EpidemProc.Enum
+﻿namespace EpidemProc.Enum
 {
-    class HealthStatus
+    public enum HealthStatus: int
     {
-
+        Healthy = 0,
+        Ok = 1,
+        MildСold = 2,
+        SeriousCold = 3,
+        Critical = 4
     }
 }

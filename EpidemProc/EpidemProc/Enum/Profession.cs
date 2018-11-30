@@ -1,7 +1,10 @@
-﻿public enum Profession : int
+﻿namespace EpidemProc.Enum
 {
-    Student = 1,
-    FactoryWorker = 2,
-    Goverment = 3,
-    SocialStructure =4
+    public enum Profession : int
+    {
+        Student = 1,
+        FactoryWorker = 2,
+        Goverment = 3,
+        SocialStructure = 4
+    }
 }

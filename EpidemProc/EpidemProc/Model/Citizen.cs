@@ -15,6 +15,7 @@ namespace EpidemProc.Models
         public bool SickLeave { get; set; }
         public bool Hospitalized { get; set; }
         public int FactureId { get; set; }
+        public int HomeId { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -23,7 +24,7 @@ namespace EpidemProc.Models
         public static SqlCommand PrepareCommand(SqlCommand command)
         {
             Citizen _citizen = new Citizen();
-            command.CommandText = @"SELECT ID, IMMUNITY, WAS_SICK, PROFESSION_ID, HEALTH, HEALTH_STATUS, HARD_WORKER, SICK_LEAVE, HOSPITALIZED, FACTURE_ID, X, Y from dbo.CITIZENS";
+            command.CommandText = @"SELECT ID, IMMUNITY, WAS_SICK, PROFESSION_ID, HEALTH, HEALTH_STATUS, HARD_WORKER, SICK_LEAVE, HOSPITALIZED, FACTURE_ID, HOME_ID, X, Y from dbo.CITIZENS";
 
             command.Parameters.Add("ID",            SqlDbType.Int).Value =  _citizen.Id;
             command.Parameters.Add("IMMUNITY",      SqlDbType.Int).Value =  _citizen.Immunity;
@@ -35,6 +36,7 @@ namespace EpidemProc.Models
             command.Parameters.Add("SICK_LEAVE",    SqlDbType.Bit).Value =  _citizen.SickLeave;
             command.Parameters.Add("HOSPITALIZED",  SqlDbType.Bit).Value =  _citizen.Hospitalized;
             command.Parameters.Add("FACTURE_ID",    SqlDbType.Int).Value =  _citizen.FactureId;
+            command.Parameters.Add("HOME_ID", SqlDbType.Int).Value = _citizen.HomeId;
             command.Parameters.Add("X",             SqlDbType.Int).Value =  _citizen.X;
             command.Parameters.Add("Y",             SqlDbType.Int).Value =  _citizen.Y;
             return command;
@@ -54,6 +56,7 @@ namespace EpidemProc.Models
                 SickLeave       = reader.GetBoolean(i++),
                 Hospitalized    = reader.GetBoolean(i++),
                 FactureId       = reader.GetInt32(i++),
+                HomeId          = reader.GetInt32(i++),
                 X               = reader.GetInt32(i++),
                 Y               = reader.GetInt32(i++)
             };

@@ -22,6 +22,7 @@ namespace EpidemProc
 
         public static void Lifemove(Citizen[] _Citizens, int Day, int hour)
         {
+
         }
     }
 }

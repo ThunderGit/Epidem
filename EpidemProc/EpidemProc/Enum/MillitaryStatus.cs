@@ -5,6 +5,6 @@
         Calm = 0,
         HighAttention = 1,
         StateOfEmergency = 2,
-        StateOfMillitary
+        StateOfMillitary = 3
     }
 }

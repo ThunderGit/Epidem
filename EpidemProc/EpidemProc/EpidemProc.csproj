@@ -44,11 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enum\Days.cs" />
-    <Compile Include="LifeSimulator.cs" />
+    <Compile Include="LifeSimulator\EntertainmentCondition.cs" />
+    <Compile Include="LifeSimulator\HomeCondition.cs" />
+    <Compile Include="LifeSimulator\LifeSimulator.cs" />
     <Compile Include="Enum\MillitaryStatus.cs" />
     <Compile Include="Enum\PoliceStatus.cs" />
     <Compile Include="Enum\HealthStatus.cs" />
     <Compile Include="Enum\Profession.cs" />
+    <Compile Include="LifeSimulator\WorkCondition.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Home.cs" />

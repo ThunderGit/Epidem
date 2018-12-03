@@ -1,6 +1,6 @@
 ﻿using System;
 using EpidemProc.Models;
-
+using EpidemProc.LifeSimulator;
 
 
 namespace EpidemProc
@@ -20,7 +20,8 @@ namespace EpidemProc
         static void LoadData()
         {
             Loader loader = new Loader(@"DESKTOP-SH16UUG", "PANDEMIC_INC");
-            loader.Load(ref _Citizens, ref _Policeman, ref _Doctor, ref _Troop, ref _Police, ref _Hospital, ref _Millitary, ref _Facture, ref _Home);
+            loader.Load(ref _Citizens, ref _Policeman, ref _Doctor, ref _Troop, ref _Police,
+                ref _Hospital, ref _Millitary, ref _Facture, ref _Home);
             //All = loader.Load<Citizen>();
         }
 

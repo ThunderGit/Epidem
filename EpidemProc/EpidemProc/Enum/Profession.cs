@@ -2,9 +2,12 @@
 {
     public enum Profession : int
     {
+        NoWork = 0,
         Student = 1,
         FactoryWorker = 2,
-        Goverment = 3,
-        SocialStructure = 4
+        Customer = 3,
+        Medicine = 4,
+        Police = 5,
+        Millitary = 6
     }
 }

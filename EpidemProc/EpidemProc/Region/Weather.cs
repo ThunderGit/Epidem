@@ -14,7 +14,7 @@ namespace EpidemProc.Region
 
 		public Weather()
 		{
-			t = 20;
+			t = -3;
 			wet = 60;
 			isRain = false;
 		}
@@ -40,14 +40,14 @@ namespace EpidemProc.Region
 		private void ChangeTemperature(int daypos)
 		{
 			Random rand = new Random();
-			if (daypos > 40 && daypos < 274) 
+			if (daypos > 20 && daypos < 274) 
 			{
 				if (t < 43) t += rand.Next(2);
 				else t -= 3;
 			}
 			else
 			{
-				if (t > -25) t -= rand.Next(2);
+				if (t > -25) t -= rand.Next(4);
 				else t += 2;
 			}
 		}

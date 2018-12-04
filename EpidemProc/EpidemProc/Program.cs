@@ -58,13 +58,14 @@ namespace EpidemProc
 
 			Virus virus = new Virus();
 			Weather weather = new Weather();
-			while (totalDay == 365)
+			while (totalDay != 365)
 			{
 				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour);
 				virus.Infect(ref _Citizens, weather);
 
-
-
+				//Console.WriteLine(currentDay);
+				Console.WriteLine(weather.t);
+				//Console.WriteLine(weather.wet);
 				//конец цикла перепросчет дневнойстатистики и изменение погоды
 				hour++;
 				if (hour == 24)

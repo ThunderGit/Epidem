@@ -56,7 +56,7 @@ namespace EpidemProc.VirusPart
 				temperatureFactor = 100 - 7 * Math.Abs(weather.t - MaxInfectTemperature);
 
 			int imunityFactor = 100 - PotentialPatient.Immunity;
-			float probability = imunityFactor + wetFactor + temperatureFactor;
+			float probability = (3 *imunityFactor + wetFactor + temperatureFactor) / 5;
 			if (probability > rand.Next(100))
 				return true;
 			else

@@ -47,17 +47,36 @@ namespace EpidemProc
 
         static void Main(string[] args)
         {
-            //нужно достать эти данные
+            //подгрузка
             LoadData();
             PrepareData();
+			//счетчик дней
 			int day = 6;
 			int hour = 0;
+			int totalDay = 0;
+			int currentDay = 335; 
+
 			Virus virus = new Virus();
 			Weather weather = new Weather();
-			while (true)
+			while (totalDay == 365)
 			{
 				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour);
 				virus.Infect(ref _Citizens, weather);
+
+
+
+				//конец цикла перепросчет дневнойстатистики и изменение погоды
+				hour++;
+				if (hour == 24)
+				{
+					hour = 0;
+					day++;
+					totalDay++;
+					currentDay++;
+					weather.ChangeWeather(currentDay);
+					if (day == 8) { day = 0; }
+					if (currentDay == 366) currentDay = 1;
+				}	
 			}
             Console.ReadKey();
         }

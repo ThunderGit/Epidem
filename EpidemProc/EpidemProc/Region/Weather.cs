@@ -18,7 +18,7 @@ namespace EpidemProc.Region
 			wet = 60;
 			isRain = false;
 		}
-		public void ChangeWeather()
+		public void ChangeWeather(int daypos)
 		{
 			Random rand = new Random();
 			int rainprobably = rand.Next(100);
@@ -35,8 +35,9 @@ namespace EpidemProc.Region
 				if (wet - 1 >=10) wet --;
 				else wet = 10;
 			}
+			ChangeTemperature(daypos);
 		}
-		public void ChangeTemperature(int daypos)
+		private void ChangeTemperature(int daypos)
 		{
 			Random rand = new Random();
 			if (daypos > 40 && daypos < 274) 

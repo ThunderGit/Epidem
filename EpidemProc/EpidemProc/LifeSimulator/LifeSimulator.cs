@@ -16,7 +16,7 @@ using EpidemProc.Enum;
 
 namespace EpidemProc.LifeSimulator
 {
-    class LifeSimulator
+    class Life
     {
         private static void AtHome(ref Citizen citizen, Home[] _Homes)
         {

@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\FactureType.cs" />
     <Compile Include="Enum\Days.cs" />
     <Compile Include="LifeSimulator\EntertainmentCondition.cs" />
+    <Compile Include="LifeSimulator\GoAwayCondition.cs" />
     <Compile Include="LifeSimulator\HomeCondition.cs" />
     <Compile Include="LifeSimulator\LifeSimulator.cs" />
     <Compile Include="Enum\MillitaryStatus.cs" />
@@ -64,6 +66,8 @@
     <Compile Include="Model\Citizen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region\Region.cs" />
+    <Compile Include="Virus\Virus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

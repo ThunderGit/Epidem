@@ -5,7 +5,7 @@
         NoWork = 0,
         Student = 1,
         FactoryWorker = 2,
-        Customer = 3,
+        Seller = 3,
         Medicine = 4,
         Police = 5,
         Millitary = 6

@@ -46,7 +46,7 @@ namespace EpidemProc.LifeSimulator
                         ))
                     );
         }
-        public static bool AtHomeCondition(int Day, int Hour, int Proffession, bool HardWorker)
+        public static bool AwayCondition(int Day, int Hour, int Proffession, bool HardWorker)
         {
             return CasualCondition(Day, Hour, Proffession, HardWorker) ||
                    WeekendCondition(Day, Hour, Proffession, HardWorker);

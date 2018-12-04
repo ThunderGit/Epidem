@@ -1,7 +1,12 @@
 ﻿using System;
-using EpidemProc.Models;
 using EpidemProc.LifeSimulator;
-
+using EpidemProc.VirusPart;
+using EpidemProc.Region;
+using EpidemProc.Models;
+using EpidemProc.Enum;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace EpidemProc
 {
@@ -16,6 +21,21 @@ namespace EpidemProc
         static Millitary[] _Millitary;
         static Facture[] _Facture;
         static Home[] _Home;
+        static Facture[] _Shop;
+
+
+        static void PrepareData()
+        {
+            List<Facture> tmp = new List<Facture>();
+            for (int i = 0; i< _Facture.Length; i++)
+            {
+                if(Equals(_Facture[i].Type, FactureType.Shop))
+                {
+                    tmp.Add(_Facture[i]);
+                }
+            }
+            _Shop = tmp.ToArray();
+        }
 
         static void LoadData()
         {
@@ -29,15 +49,16 @@ namespace EpidemProc
         {
             //нужно достать эти данные
             LoadData();
-            Console.WriteLine(_Citizens.Length);
-            Console.WriteLine(_Policeman.Length);
-            Console.WriteLine(_Doctor.Length);
-            Console.WriteLine(_Troop.Length);
-            Console.WriteLine(_Police.Length);
-            Console.WriteLine(_Hospital.Length);
-            Console.WriteLine(_Millitary.Length);
-            Console.WriteLine(_Facture.Length);
-            Console.WriteLine(_Home.Length);
+            PrepareData();
+			int day = 6;
+			int hour = 0;
+			Virus virus = new Virus();
+			Weather weather = new Weather();
+			while (true)
+			{
+				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour);
+				virus.Infect(ref _Citizens, weather);
+			}
             Console.ReadKey();
         }
     }

@@ -57,7 +57,7 @@ namespace EpidemProc.LifeSimulator
                         ))
                         ||
                         //Продавец
-                        (Equals(Proffession, Profession.Customer) &&
+                        (Equals(Proffession, Profession.Seller) &&
                         (
                              (HardWorker && TimerCheck(Hour, 14, 22))
                              ||
@@ -72,7 +72,7 @@ namespace EpidemProc.LifeSimulator
                     &&
                     (
                         //Продавец
-                        (Equals(Proffession, Profession.Customer) &&
+                        (Equals(Proffession, Profession.Seller) &&
                         (
                              (HardWorker && TimerCheck(Hour, 14, 22))
                              ||

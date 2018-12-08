@@ -1,5 +1,4 @@
 E:\Andrew\GitHub\Epidem\EpidemProc\EpidemProc\bin\Debug\EpidemProc.exe.config
-D:\Учеба\Epidem\EpidemProc\EpidemProc\obj\Debug\EpidemProc.csprojAssemblyReference.cache
 D:\Учеба\Epidem\EpidemProc\EpidemProc\obj\Debug\EpidemProc.csproj.CoreCompileInputs.cache
 D:\Учеба\Epidem\EpidemProc\EpidemProc\bin\Debug\EpidemProc.exe.config
 D:\Учеба\Epidem\EpidemProc\EpidemProc\bin\Debug\EpidemProc.exe

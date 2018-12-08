@@ -15,13 +15,13 @@ namespace EpidemProc.VirusPart
         public int Power;
         //сложность лечения
         public int Difficult;
-		//минимальная для заражения темспература
+		//минимальная для заражения температура
 		public int MinInfectTemperature;
-		//максимальная для заражения темспература
+		//максимальная для заражения температура
 		public int MaxInfectTemperature;
-		//минимальная для выживания темспература
+		//минимальная для выживания температура
 		public int MinComfortTemperature;
-		//максимальная для выживания темспература
+		//максимальная для выживания температура
 		public int MaxComfortTemperature;
 		//идеальная для заражения влажность
 		public int WetProtect;
@@ -40,6 +40,8 @@ namespace EpidemProc.VirusPart
 		public int sensoryDamaged;
 		public int lyphaticDamaged;
 		public int immunityDamaged;
+
+        public int ProbabilityOfPositiveMutation;
 
 		public Virus()
         {
@@ -63,6 +65,7 @@ namespace EpidemProc.VirusPart
 			sensoryDamaged = 1;
 			lyphaticDamaged = 2;
 			immunityDamaged = 3;
+            ProbabilityOfPositiveMutation = 80;
 	}
 
 
@@ -163,9 +166,234 @@ namespace EpidemProc.VirusPart
 					if (_Citizens[i].WasSick == true)
 						tmpI.Add(_Citizens[i]);
 				Citizen[] _Infected = tmpI.ToArray();
-				for (int i = 0; i < _Infected.Length; i++)
-					TryDamaged(weather, ref _Infected[i]);
+                for (int i = 0; i < _Infected.Length; i++)
+                {
+                    TryDamaged(weather, ref _Infected[i]);
+                    if (_Infected[i].Health <= 0)
+                    {
+                        List<Citizen> lst = new List<Citizen>(_Citizens);
+                        lst.Remove(_Infected[i]);
+                        _Citizens = lst.ToArray();
+                    }
+                }
 			}
 		}
-	}
+
+        public void Mutate(int NumberOfCitizens, int NumberOfInfected)
+        {
+            Random rand = new Random();
+            int mutateprobably = rand.Next(100);
+            if (mutateprobably > (NumberOfInfected / NumberOfCitizens) * 100) return;
+
+            int mutatepositive = rand.Next(100);
+            bool IsMutationPositive = mutatepositive < this.ProbabilityOfPositiveMutation;
+
+            int caseOfMutation = rand.Next(100);
+
+            if (IsMutationPositive)
+            {
+                switch (caseOfMutation)
+                {
+                    case 1:
+                    case 2:
+                        if (this.Difficult < 10) this.Difficult++;
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                        if (this.MinInfectTemperature > this.MinComfortTemperature) this.MinInfectTemperature--;
+                        break;
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                        if (this.MaxInfectTemperature < this.MaxComfortTemperature) this.MaxInfectTemperature++;
+                        break;
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
+                        if (this.MinComfortTemperature > -25) this.MinComfortTemperature--;
+                        break;
+                    case 21:
+                    case 22:
+                    case 23:
+                    case 24:
+                    case 25:
+                    case 26:
+                        if (this.MaxComfortTemperature < 43) this.MaxComfortTemperature++;
+                        break;
+                    case 27:
+                        if (this.CoefDifficultInfectDuringUncomfort > 2) this.CoefDifficultInfectDuringUncomfort--;
+                        break;
+                    case 28:
+                    case 29:
+                        if (this.skeletonDamaged < 10) this.skeletonDamaged++;
+                        break;
+                    case 30:
+                    case 31:
+                    case 32:
+                        if (this.muscleDamaged < 10) this.muscleDamaged++;
+                        break;
+                    case 33:
+                    case 34:
+                    case 35:
+                    case 36:
+                    case 37:
+                        if (this.respiratoryDamaged < 10) this.respiratoryDamaged++;
+                        break;
+                    case 38:
+                    case 39:
+                        if (this.circulatoryDamaged < 10) this.circulatoryDamaged++;
+                        break;
+                    case 40:
+                    case 41:
+                    case 42:
+                        if (this.diureticDamaged < 10) this.diureticDamaged++;
+                        break;
+                    case 43:
+                    case 44:
+                        if (this.digestiveDamaged < 10) this.digestiveDamaged++;
+                        break;
+                    case 45:
+                    case 46:
+                    case 47:
+                    case 48:
+                        if (this.nervousDamaged < 10) this.nervousDamaged++;
+                        break;
+                    case 49:
+                    case 50:
+                        if (this.reproductiveDamaged < 10) this.reproductiveDamaged++;
+                        break;
+                    case 51:
+                    case 52:
+                    case 53:
+                        if (this.sensoryDamaged < 10) this.sensoryDamaged++;
+                        break;
+                    case 54:
+                    case 55:
+                    case 56:
+                    case 57:
+                        if (this.lyphaticDamaged < 10) this.lyphaticDamaged++;
+                        break;
+                    case 58:
+                    case 59:
+                    case 60:
+                    case 61:
+                    case 62:
+                        if (this.immunityDamaged < 10) this.immunityDamaged++;
+                        break;
+                }
+            }
+            else
+            {
+                switch (caseOfMutation)
+                {
+                    case 1:
+                    case 2:
+                        if (this.Difficult > 0) this.Difficult--;
+                        break;
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 8:
+                        if (this.MinInfectTemperature < this.MaxInfectTemperature) this.MinInfectTemperature++;
+                        break;
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 14:
+                        if (this.MaxInfectTemperature > this.MinInfectTemperature) this.MaxInfectTemperature--;
+                        break;
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                    case 19:
+                    case 20:
+                        if (this.MinComfortTemperature < this.MinInfectTemperature) this.MinComfortTemperature++;
+                        break;
+                    case 21:
+                    case 22:
+                    case 23:
+                    case 24:
+                    case 25:
+                    case 26:
+                        if (this.MaxComfortTemperature > this.MaxInfectTemperature) this.MaxComfortTemperature--;
+                        break;
+                    case 27:
+                        if (this.CoefDifficultInfectDuringUncomfort < 10) this.CoefDifficultInfectDuringUncomfort++;
+                        break;
+                    case 28:
+                    case 29:
+                        if (this.skeletonDamaged > 0) this.skeletonDamaged--;
+                        break;
+                    case 30:
+                    case 31:
+                    case 32:
+                        if (this.muscleDamaged > 0) this.muscleDamaged--;
+                        break;
+                    case 33:
+                    case 34:
+                    case 35:
+                    case 36:
+                    case 37:
+                        if (this.respiratoryDamaged > 0) this.respiratoryDamaged--;
+                        break;
+                    case 38:
+                    case 39:
+                        if (this.circulatoryDamaged > 0) this.circulatoryDamaged--;
+                        break;
+                    case 40:
+                    case 41:
+                    case 42:
+                        if (this.diureticDamaged > 0) this.diureticDamaged--;
+                        break;
+                    case 43:
+                    case 44:
+                        if (this.digestiveDamaged > 0) this.digestiveDamaged--;
+                        break;
+                    case 45:
+                    case 46:
+                    case 47:
+                    case 48:
+                        if (this.nervousDamaged > 0) this.nervousDamaged--;
+                        break;
+                    case 49:
+                    case 50:
+                        if (this.reproductiveDamaged > 0) this.reproductiveDamaged--;
+                        break;
+                    case 51:
+                    case 52:
+                    case 53:
+                        if (this.sensoryDamaged > 0) this.sensoryDamaged--;
+                        break;
+                    case 54:
+                    case 55:
+                    case 56:
+                    case 57:
+                        if (this.lyphaticDamaged > 0) this.lyphaticDamaged--;
+                        break;
+                    case 58:
+                    case 59:
+                    case 60:
+                    case 61:
+                    case 62:
+                        if (this.immunityDamaged > 0) this.immunityDamaged--;
+                        break;
+                }
+            }
+        }
+    }
 }

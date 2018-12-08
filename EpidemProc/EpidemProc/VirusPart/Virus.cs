@@ -75,9 +75,9 @@ namespace EpidemProc.VirusPart
 				temperatureFactor = 100;
 			else
 				if (weather.t < MinInfectTemperature)
-				temperatureFactor = 100 - 7 * Math.Abs(weather.t - MinInfectTemperature);
+				temperatureFactor = 100 - CoefDifficultInfectDuringUncomfort * Math.Abs(weather.t - MinInfectTemperature);
 			else
-				temperatureFactor = 100 - 7 * Math.Abs(weather.t - MaxInfectTemperature);
+				temperatureFactor = 100 - CoefDifficultInfectDuringUncomfort * Math.Abs(weather.t - MaxInfectTemperature);
 
 			int imunityFactor = 100 - PotentialPatient.Immunity;
 			float probability = (3 *imunityFactor + wetFactor + temperatureFactor) / 5;
@@ -151,7 +151,7 @@ namespace EpidemProc.VirusPart
 		private void TryDamaged(Weather weather, ref Citizen Infected)
 		{
 			Infected.Immunity -= immunityDamaged/2 + 1;
-			Infected.Health -= (100 - Infected.Immunity) * SumOfTotalDamage() / 2;
+			Infected.Health -= (100 - Infected.Immunity)/100 * SumOfTotalDamage() / 2;
 			Infected.HealthStatus = ChangeHealthStatus(Infected.Health);
 		}
 		public void Damaged(ref Citizen[] _Citizens, Weather weather)

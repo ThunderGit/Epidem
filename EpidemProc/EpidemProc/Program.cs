@@ -54,7 +54,7 @@ namespace EpidemProc
 			int day = 6;
 			int hour = 0;
 			int totalDay = 0;
-			int currentDay = 335; 
+			int currentDay = 335;
 
 			Virus virus = new Virus();
 			Weather weather = new Weather();
@@ -69,10 +69,10 @@ namespace EpidemProc
 				{
 					virus.Damaged(ref _Citizens, weather);
 				}
-				//Console.WriteLine(currentDay);
 				Console.WriteLine(weather.t);
-				//Console.WriteLine(weather.wet);
-				//конец цикла перепросчет дневнойстатистики и изменение погоды
+
+
+				//конец цикла перепросчет дневной статистики и изменение погоды
 				hour++;
 				if (hour == 24)
 				{

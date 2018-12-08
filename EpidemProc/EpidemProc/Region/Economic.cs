@@ -12,12 +12,12 @@ namespace EpidemProc.Region
 {
 	class Economic
 	{
-		private static int EducationPartOfBudget;
-		private static int MedicinePartOfBudget;
-		private static int PolicePartOfBudget;
-		private static int MillitaryPartOfBudget;
-		private static int CorruptionLevel;
-		private static long Sum;
+		private int EducationPartOfBudget;
+		private int MedicinePartOfBudget;
+		private int PolicePartOfBudget;
+		private int MillitaryPartOfBudget;
+		private int CorruptionLevel;
+		private long Sum;
 
 		Economic(int _EducationPartOfBudget, int _MedicinePartOfBudget, int _PolicePartOfBudget, int _MillitaryPartOfBudget, int _CorruptionLevel)
 		{
@@ -28,7 +28,7 @@ namespace EpidemProc.Region
 			CorruptionLevel = _CorruptionLevel;
 			Sum = 0;
 		}
-		public static long Budget(Citizen [] citizens)
+		public long Budget(Citizen [] citizens)
 		{
 			Sum = 0;
 			for (int i = 0; i < citizens.Length; i++)
@@ -36,15 +36,15 @@ namespace EpidemProc.Region
 			return Sum;
 		}
 
-		public static long HospitalBudget(Hospital [] hospitals)
+		public long HospitalBudget(Hospital [] hospitals)
 		{
 			return Sum * CorruptionLevel * MedicinePartOfBudget / (100 * 100 * hospitals.Length); 
 		}
-		public static long PoliceBudget(Police[] polices)
+		public long PoliceBudget(Police[] polices)
 		{
 			return Sum * CorruptionLevel * PolicePartOfBudget / (100 * 100 * polices.Length);
 		}
-		public static long MillitaryBudget(Millitary[] millitaries)
+		public long MillitaryBudget(Millitary[] millitaries)
 		{
 			return Sum * CorruptionLevel * MillitaryPartOfBudget / (100 * 100 * millitaries.Length);
 		}

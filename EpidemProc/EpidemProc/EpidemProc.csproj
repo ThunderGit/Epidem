@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Enum\FactureType.cs" />
     <Compile Include="Enum\Days.cs" />
+    <Compile Include="GeneralOperations.cs" />
     <Compile Include="LifeSimulator\EntertainmentCondition.cs" />
     <Compile Include="LifeSimulator\GoAwayCondition.cs" />
     <Compile Include="LifeSimulator\HomeCondition.cs" />

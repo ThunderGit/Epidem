@@ -18,13 +18,14 @@ namespace EpidemProc.Models
         public int HomeId { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public int Salary { get; set; }
 
 
 
         public static SqlCommand PrepareCommand(SqlCommand command)
         {
             Citizen _citizen = new Citizen();
-            command.CommandText = @"SELECT ID, IMMUNITY, WAS_SICK, PROFESSION_ID, HEALTH, HEALTH_STATUS, HARD_WORKER, SICK_LEAVE, HOSPITALIZED, FACTURE_ID, HOME_ID, X, Y from dbo.CITIZENS";
+            command.CommandText = @"SELECT ID, IMMUNITY, WAS_SICK, PROFESSION_ID, HEALTH, HEALTH_STATUS, HARD_WORKER, SICK_LEAVE, HOSPITALIZED, FACTURE_ID, HOME_ID, X, Y, SALARY from dbo.CITIZENS";
 
             command.Parameters.Add("ID",            SqlDbType.Int).Value =  _citizen.Id;
             command.Parameters.Add("IMMUNITY",      SqlDbType.Int).Value =  _citizen.Immunity;
@@ -39,6 +40,7 @@ namespace EpidemProc.Models
             command.Parameters.Add("HOME_ID", SqlDbType.Int).Value = _citizen.HomeId;
             command.Parameters.Add("X",             SqlDbType.Int).Value =  _citizen.X;
             command.Parameters.Add("Y",             SqlDbType.Int).Value =  _citizen.Y;
+            command.Parameters.Add("SALARY",        SqlDbType.Int).Value = _citizen.Salary;
             return command;
         }
         public static Citizen Get(SqlDataReader reader)
@@ -58,7 +60,8 @@ namespace EpidemProc.Models
                 FactureId       = reader.GetInt32(i++),
                 HomeId          = reader.GetInt32(i++),
                 X               = reader.GetInt32(i++),
-                Y               = reader.GetInt32(i++)
+                Y               = reader.GetInt32(i++),
+                Salary          = reader.GetInt32(i++)
             };
         }
 

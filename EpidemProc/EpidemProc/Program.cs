@@ -60,9 +60,15 @@ namespace EpidemProc
 			Weather weather = new Weather();
 			while (totalDay != 365)
 			{
+				//перенмещение жителей
 				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour);
+				//заражение(если возможно)
 				virus.Infect(ref _Citizens, weather);
-
+				//в начале каждого нового дня заражение
+				if(hour == 0)
+				{
+					virus.Damaged(ref _Citizens, weather);
+				}
 				//Console.WriteLine(currentDay);
 				Console.WriteLine(weather.t);
 				//Console.WriteLine(weather.wet);

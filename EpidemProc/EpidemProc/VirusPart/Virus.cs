@@ -28,6 +28,19 @@ namespace EpidemProc.VirusPart
 		//коефициент критичности некомфортных условий, влияющих на заражение
 		public int CoefDifficultInfectDuringUncomfort;
 
+		//факторы поражения систем
+		public int skeletonDamaged;
+		public int muscleDamaged;
+		public int respiratoryDamaged;
+		public int circulatoryDamaged;
+		public int diureticDamaged;
+		public int digestiveDamaged;
+		public int nervousDamaged;
+		public int reproductiveDamaged;
+		public int sensoryDamaged;
+		public int lyphaticDamaged;
+		public int immunityDamaged;
+
 		public Virus()
         {
             DangerInfectRadius = 1;
@@ -39,7 +52,18 @@ namespace EpidemProc.VirusPart
 			MaxComfortTemperature = 35;
 			WetProtect = 60;
 			CoefDifficultInfectDuringUncomfort = 7;
-		}
+			skeletonDamaged = 0;
+			muscleDamaged = 1;
+			respiratoryDamaged = 3;
+			circulatoryDamaged = 0;
+			diureticDamaged = 1;
+			digestiveDamaged = 0;
+			nervousDamaged = 2;
+			reproductiveDamaged = 0;
+			sensoryDamaged = 1;
+			lyphaticDamaged = 2;
+			immunityDamaged = 3;
+	}
 
 
 		private bool InfectCondition(Weather weather, Citizen PotentialPatient)
@@ -63,44 +87,86 @@ namespace EpidemProc.VirusPart
 				return false;
 		}
 
-
-		//метод заражения
+		//заражение
+		private void TryInfect(Weather weather, Citizen Infected, ref Citizen Healthy)
+		{
+			//формулы расчета нахождения здоровых граждан в одном квадрате с зараженным
+			if (Math.Abs((Healthy.X / 20 - Infected.X / 20)) <= DangerInfectRadius &&
+				Math.Abs((Healthy.Y / 20 - Infected.Y / 20)) <= DangerInfectRadius &&
+				Healthy != Infected)
+			{
+				//формула заражения
+				if (InfectCondition(weather, Healthy))
+				{
+					Healthy.WasSick = true;
+				}
+			}
+		}
 		public void Infect(ref Citizen[] _Citizens, Weather weather)
 		{
 			//если температурные условие вне пределах приемлемых, то метод не работает
 			if (weather.t >= MaxComfortTemperature && weather.t <= MinComfortTemperature) return;
 			else
-			{ 
+			{
 				//разделение жителей на уже зараженных и здоровых
 				List<Citizen> tmpI = new List<Citizen>();
 				List<Citizen> tmpH = new List<Citizen>();
 				for (int i = 0; i < _Citizens.Length; i++)
 					if (_Citizens[i].WasSick == true)
 						tmpI.Add(_Citizens[i]);
-					else 
+					else
 						tmpH.Add(_Citizens[i]);
 				Citizen[] _Infected = tmpI.ToArray();
 				Citizen[] _Healthy = tmpH.ToArray();
-
-				//цикл возможности заражения здоровых людей каждым зараженным
 				for (int i = 0; i < _Infected.Length; i++)
-				{
 					for (int j = 0; j < _Healthy.Length; j++)
+						TryInfect(weather, _Infected[i], ref _Healthy[j]);
+			}
+		}
+		//ухудшение здоровья
+		private int SumOfTotalDamage()
+		{
+			return	skeletonDamaged		+ muscleDamaged			+ respiratoryDamaged +
+					circulatoryDamaged	+ diureticDamaged		+ digestiveDamaged +
+					nervousDamaged		+ reproductiveDamaged	+ sensoryDamaged +
+					lyphaticDamaged;
+		}
+		public int ChangeHealthStatus(int healthLevel)
+		{
+			if (healthLevel >= 90) { return 0; }
+			else
+			{
+				if (healthLevel >= 80) { return 1; }
+				else
+				{
+					if (healthLevel >= 60) { return 2; }
+					else
 					{
-						//формулы расчета нахождения здоровых граждан в одном квадрате с зараженным
-						if (Math.Abs((_Healthy[j].X / 20 - _Infected[i].X / 20)) <= DangerInfectRadius &&
-							Math.Abs((_Healthy[j].Y / 20 - _Infected[i].Y / 20)) <= DangerInfectRadius &&
-							_Healthy[j] != _Infected[i])
-						{
-							//формула заражения
-							if (InfectCondition(weather, _Healthy[j]))
-							{
-								_Healthy[j].WasSick = true;
-							}
-						}
+						if (healthLevel >= 40) { return 3; }
+						else return 4;
 					}
 				}
 			}
-		}   
+		}
+		private void TryDamaged(Weather weather, ref Citizen Infected)
+		{
+			Infected.Immunity -= immunityDamaged/2 + 1;
+			Infected.Health -= (100 - Infected.Immunity) * SumOfTotalDamage() / 2;
+			Infected.HealthStatus = ChangeHealthStatus(Infected.Health);
+		}
+		public void Damaged(ref Citizen[] _Citizens, Weather weather)
+		{
+			if (weather.t >= MaxComfortTemperature && weather.t <= MinComfortTemperature) return;
+			else
+			{
+				List<Citizen> tmpI = new List<Citizen>();
+				for (int i = 0; i < _Citizens.Length; i++)
+					if (_Citizens[i].WasSick == true)
+						tmpI.Add(_Citizens[i]);
+				Citizen[] _Infected = tmpI.ToArray();
+				for (int i = 0; i < _Infected.Length; i++)
+					TryDamaged(weather, ref _Infected[i]);
+			}
+		}
 	}
 }

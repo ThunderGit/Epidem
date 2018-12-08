@@ -19,7 +19,6 @@ namespace EpidemProc.Models
             command.CommandText = @"select ID, IS_PRIVATE, CORRUPTION_LEVEL, COUNT_OF_MAX_HOSPITALIZED, X, Y from dbo.HOSPITAL";
 
             command.Parameters.Add("ID",                        SqlDbType.Int).Value = _hospital.Id;
-            command.Parameters.Add("IS_PRIVATE",                SqlDbType.Bit).Value = _hospital.IsPrivate;
             command.Parameters.Add("CORRUPTION_LEVEL",          SqlDbType.Int).Value = _hospital.CorruptionLevel;
             command.Parameters.Add("COUNT_OF_MAX_HOSPITALIZED", SqlDbType.Int).Value = _hospital.MaxHospitalized;
             command.Parameters.Add("X",                         SqlDbType.Int).Value = _hospital.X;
@@ -32,7 +31,6 @@ namespace EpidemProc.Models
             return new Hospital
             {
                 Id = reader.GetInt32(i++),
-                IsPrivate = reader.GetBoolean(i++),
                 CorruptionLevel = reader.GetInt32(i++),
                 MaxHospitalized = reader.GetInt32(i++),
                 X = reader.GetInt32(i++),

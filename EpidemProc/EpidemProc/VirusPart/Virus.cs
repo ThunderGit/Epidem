@@ -68,7 +68,6 @@ namespace EpidemProc.VirusPart
 
 		private bool InfectCondition(Weather weather, Citizen PotentialPatient)
 		{
-			Random rand = new Random();
 			int wetFactor = 100 - Math.Abs(WetProtect - weather.wet);
 			int temperatureFactor;
 			if (weather.t > MinInfectTemperature && weather.t > MaxInfectTemperature)
@@ -81,7 +80,7 @@ namespace EpidemProc.VirusPart
 
 			int imunityFactor = 100 - PotentialPatient.Immunity;
 			float probability = (3 *imunityFactor + wetFactor + temperatureFactor) / 5;
-			if (probability > rand.Next(100))
+			if (GeneralOperations.Success(probability))
 				return true;
 			else
 				return false;

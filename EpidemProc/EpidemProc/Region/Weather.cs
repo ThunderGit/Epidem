@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using EpidemProc;
 
 namespace EpidemProc.Region
 {
@@ -20,9 +21,7 @@ namespace EpidemProc.Region
 		}
 		public void ChangeWeather(int daypos)
 		{
-			Random rand = new Random();
-			int rainprobably = rand.Next(100);
-			if(rainprobably < 25)
+			if(GeneralOperations.Success(25))
 			{
 				isRain = true;
 				if (wet + 30 <= 100) wet += 30;

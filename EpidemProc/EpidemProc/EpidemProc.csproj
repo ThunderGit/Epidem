@@ -55,6 +55,7 @@
     <Compile Include="Enum\Profession.cs" />
     <Compile Include="LifeSimulator\WorkCondition.cs" />
     <Compile Include="Loader.cs" />
+    <Compile Include="MedicinePart\MedicinePart.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Home.cs" />
     <Compile Include="Model\Troop.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Model\Citizen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Region\Economic.cs" />
     <Compile Include="Region\Weather.cs" />
     <Compile Include="VirusPart\Virus.cs" />
   </ItemGroup>

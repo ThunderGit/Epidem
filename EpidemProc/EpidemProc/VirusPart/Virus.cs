@@ -123,7 +123,26 @@ namespace EpidemProc.VirusPart
 				for (int i = 0; i < _Infected.Length; i++)
 					for (int j = 0; j < _Healthy.Length; j++)
 						TryInfect(weather, _Infected[i], ref _Healthy[j]);
-			}
+
+                int count = 0;
+                for (int i = 0; i < _Infected.Length;)
+                {
+                    for (int j = 0; j < _Healthy.Length;)
+                    {
+                        if (_Infected[i].Id < _Healthy[i].Id)
+                        {
+                            _Citizens[count] = _Infected[i];
+                            i++;
+                        }
+                        else
+                        {
+                            _Citizens[count] = _Healthy[j];
+                            j++;
+                        }
+                        count++;
+                    }
+                }
+            }
 		}
 		//ухудшение здоровья
 		private int SumOfTotalDamage()
@@ -161,19 +180,17 @@ namespace EpidemProc.VirusPart
 			if (weather.t >= MaxComfortTemperature && weather.t <= MinComfortTemperature) return;
 			else
 			{
-				List<Citizen> tmpI = new List<Citizen>();
-				for (int i = 0; i < _Citizens.Length; i++)
-					if (_Citizens[i].WasSick == true)
-						tmpI.Add(_Citizens[i]);
-				Citizen[] _Infected = tmpI.ToArray();
-                for (int i = 0; i < _Infected.Length; i++)
+                for (int i = 0; i < _Citizens.Length; i++)
                 {
-                    TryDamaged(weather, ref _Infected[i]);
-                    if (_Infected[i].Health <= 0)
+                    if (_Citizens[i].WasSick == true)
                     {
-                        List<Citizen> lst = new List<Citizen>(_Citizens);
-                        lst.Remove(_Infected[i]);
-                        _Citizens = lst.ToArray();
+                        TryDamaged(weather, ref _Citizens[i]);
+                        if (_Citizens[i].Health <= 0)
+                        {
+                            List<Citizen> lst = new List<Citizen>(_Citizens);
+                            lst.Remove(_Citizens[i]);
+                            _Citizens = lst.ToArray();
+                        }
                     }
                 }
 			}

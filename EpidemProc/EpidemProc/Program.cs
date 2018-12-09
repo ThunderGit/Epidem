@@ -94,6 +94,11 @@ namespace EpidemProc
 					med.Hospitalizations(ref _Citizens, ref _Hospital, _Home);
 					med.LeavesHospital(ref _Citizens, ref _Hospital, _Home);
 				}
+				//просчет статистики каждый 30 день
+				if(totalDay % 30 == 0)
+				{
+					status = Medstat.Statistic(_Hospital, _Citizens.Length, countOfDeath);
+				}
 				//конец цикла перепросчет дневной статистики и изменение погоды
 				hour++;
 				if (hour == 24)

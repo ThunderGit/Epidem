@@ -24,7 +24,7 @@ namespace EpidemProc.MedicinePart
 		}
 
 
-
+		//расчет посещения
 		private float HealthFactor(int status)
 		{
 			if (Equals(HealthStatus.Healthy, status)) return 1;
@@ -67,8 +67,8 @@ namespace EpidemProc.MedicinePart
 
 
 
-
-		public void Invite(ref Citizen patient, ref Hospital[] hospitals, Home[] home)
+		//посещение 
+		private void Invite(ref Citizen patient, ref Hospital[] hospitals, Home[] home)
 		{
 			for (int i = 0; i < home.Length; i++)
 			{
@@ -97,7 +97,6 @@ namespace EpidemProc.MedicinePart
 				}
 			}
 		}
-
 		//если здоров или ок, то не обращается. Если слабая болезнь но трудоголик то не обращается
 		private bool InviteCondition(Citizen patient)
 		{
@@ -111,16 +110,11 @@ namespace EpidemProc.MedicinePart
 			}
 			else return false;
 		}
-
 		public void Invites(ref Citizen [] patients, ref Hospital [] hospitals, Home [] home)
 		{
 			for(int i = 0; i < patients.Length; i++)
-			{
 				if (InviteCondition(patients[i]) && patients[i].WasSick == true)
-				{
 					Invite(ref patients[i], ref hospitals, home);
-				}
-			}
 		}
 	}
 }

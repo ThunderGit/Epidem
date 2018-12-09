@@ -1,14 +1,15 @@
-﻿using Microsoft.Analytics.Interfaces;
-using Microsoft.Analytics.Types.Sql;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Data;
+using System.Data.SqlClient;
 
 namespace EpidemProc.Model.Log
 {
 	class LogInfected
 	{
+		public int Id { get; set; }
+		public int Iteration { get; set; }
+		public int X { get; set; }
+		public int Y { get; set; }
+		public int CountOfInfected { get; set; }
+		public int CountOfHealthy { get; set; }
 	}
 }

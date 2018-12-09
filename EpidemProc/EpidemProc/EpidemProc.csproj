@@ -59,6 +59,10 @@
     <Compile Include="MedicinePart\Conditions.cs" />
     <Compile Include="MedicinePart\Counters.cs" />
     <Compile Include="MedicinePart\MedicinePart.cs" />
+    <Compile Include="Model\Log\LogGlobal.cs" />
+    <Compile Include="Model\Log\LogInfected.cs" />
+    <Compile Include="Model\Log\LogMedStatistic.cs" />
+    <Compile Include="Model\Log\LogVirus.cs" />
     <Compile Include="PolicePart\PolicePart.cs" />
     <Compile Include="MillitaryPart\MillitaryPart.cs" />
     <Compile Include="Model\Doctor.cs" />

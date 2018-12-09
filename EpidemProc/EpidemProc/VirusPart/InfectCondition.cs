@@ -10,7 +10,7 @@ namespace EpidemProc.VirusPart
 		{
 			int statusFactor = InfectFactors.StatusFactor(status);
 			int wetFactor = InfectFactors.WetFactor(weather, virus.WetProtect);
-			int temperatureFactor = InfectFactors.TemperatureFactor(weather, virus.CoefDifficultInfectDuringUncomfort, virus.MinInfectTemperature, virus.MaxInfectTemperature);
+			int temperatureFactor = InfectFactors.TemperatureFactor(weather, virus.CoefDifficultInfectDuringUncomfort, virus.MinInfectT, virus.MaxInfectT);
 			int imunityFactor = InfectFactors.ImmunityFactor(ppatient.Immunity);
 
 			float probability = (3 * imunityFactor + wetFactor + temperatureFactor + statusFactor) / 6;

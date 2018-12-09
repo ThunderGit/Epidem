@@ -179,7 +179,7 @@ namespace EpidemProc.VirusPart
                 }
 			}
 		}
-
+		//мутация
         public void Mutate(int NumberOfCitizens, int NumberOfInfected)
         {
             if (GeneralOperations.Success((NumberOfInfected / NumberOfCitizens) * 100)) return;

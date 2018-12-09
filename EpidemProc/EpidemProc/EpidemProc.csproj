@@ -72,6 +72,7 @@
     <Compile Include="Region\Economic.cs" />
     <Compile Include="Region\Medstat.cs" />
     <Compile Include="Region\Weather.cs" />
+    <Compile Include="ScientistPart\ScientistPart.cs" />
     <Compile Include="VirusPart\InfectCondition.cs" />
     <Compile Include="VirusPart\InfectFactors.cs" />
     <Compile Include="VirusPart\MutateConditions.cs" />

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using EpidemProc.MedPart;
+using EpidemProc.Scientist;
 
 namespace EpidemProc
 {
@@ -58,10 +59,11 @@ namespace EpidemProc
 			int currentDay = 335;
 
 			int status = 0;
-
+			int researchProgress = 0;
 			Virus virus = new Virus();
 			Weather weather = new Weather();
 			MedicinePart med = new MedicinePart();
+			Economic Econimic = new Economic(25, 20, 20, 20, 15);
 			while (totalDay != 365)
 			{
 				//перенмещение жителей
@@ -79,6 +81,10 @@ namespace EpidemProc
 						if (_Citizens[i].WasSick)
 							countOfInfected++;
 					virus.Mutate(_Citizens.Length, countOfInfected);
+					if(Equals(status, MillitaryStatus.StateOfEmergency) || Equals(status, MillitaryStatus.StateOfMillitary))
+					{
+						researchProgress += ScientistPart.Research(hospitals, E);
+					}
 				}
 				//оращение к врачу
 				if (hour == 9)
@@ -96,7 +102,7 @@ namespace EpidemProc
 					totalDay++;
 					currentDay++;
 					weather.ChangeWeather(currentDay);
-					if (day == 8) { day = 0; }
+					if (day == 7) { day = 0; }
 					if (currentDay == 366) currentDay = 1;
 				}	
 			}

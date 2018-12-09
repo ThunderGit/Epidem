@@ -19,7 +19,7 @@ namespace EpidemProc.Region
 		private int CorruptionLevel;
 		private long Sum;
 
-		Economic(int _EducationPartOfBudget, int _MedicinePartOfBudget, int _PolicePartOfBudget, int _MillitaryPartOfBudget, int _CorruptionLevel)
+		public Economic(int _EducationPartOfBudget, int _MedicinePartOfBudget, int _PolicePartOfBudget, int _MillitaryPartOfBudget, int _CorruptionLevel)
 		{
 			EducationPartOfBudget = _EducationPartOfBudget;
 			MedicinePartOfBudget = _MedicinePartOfBudget;
@@ -44,18 +44,21 @@ namespace EpidemProc.Region
 			return Sum;
 		}
 
-		public long HospitalBudget(Hospital [] hospitals)
+		public long HospitalBudget()
 		{
-			return Sum * CorruptionLevel * MedicinePartOfBudget / (100 * 100 * hospitals.Length); 
+			return Sum * MedicinePartOfBudget ; 
 		}
-		public long PoliceBudget(Police[] polices)
+		public long PoliceBudget()
 		{
-			return Sum * CorruptionLevel * PolicePartOfBudget / (100 * 100 * polices.Length);
+			return Sum * PolicePartOfBudget;
 		}
-		public long MillitaryBudget(Millitary[] millitaries)
+		public long MillitaryBudget()
 		{
-			return Sum * CorruptionLevel * MillitaryPartOfBudget / (100 * 100 * millitaries.Length);
+			return Sum * MillitaryPartOfBudget;
 		}
-
+		public long EducationBudget()
+		{
+			return Sum * EducationPartOfBudget;
+		}
 	}
 }

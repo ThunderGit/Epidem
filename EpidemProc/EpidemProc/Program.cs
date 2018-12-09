@@ -59,7 +59,7 @@ namespace EpidemProc
 			int hour = 0;
 			int totalDay = 0;
 			int currentDay = 335;
-
+			long iterator = 0;
 			int status = 0;
 			int researchProgress = 0;
 			int countOfDeath = 0;
@@ -67,17 +67,20 @@ namespace EpidemProc
 			Weather weather = new Weather();
 			MedicinePart med = new MedicinePart();
 			Economic Econimic = new Economic(25, 20, 20, 20, 15);
-			while (totalDay != 365)
+			while (_Citizens.Length != 0 || researchProgress != 100)
 			{
 				//перенмещение жителей
 				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour, status);
-				PolicePart.PoliceAction(_Troop,ref _Citizens, _Hospital, _Police, status);
+				PolicePart.PoliceAction(_Troop, ref _Citizens, _Hospital, _Police, status);
 				MillitaryPart.MillitaryAction(_Millitary, _Troop, ref _Citizens, _Hospital, _Police, status);
 				//заражение(если возможно)
 				virus.Infect(ref _Citizens, weather, status);
 				//в начале каждого нового дня поражение зараженных
-				if(hour == 0)
-					virus.Damaged(ref _Citizens, weather, status, ref countOfDeath);
+				if (hour == 0)
+				{ 
+					virus.Damaged(ref _Citizens, weather, status);
+					virus.Death(ref _Citizens, ref _Doctor, ref _Policeman, ref _Troop, ref countOfDeath);
+				}
 				//мутация раз в неделю
 				if (Equals(day, Days.Monday))
 				{
@@ -105,6 +108,7 @@ namespace EpidemProc
 				}
 				//конец цикла перепросчет дневной статистики и изменение погоды
 				hour++;
+				iterator++;
 				if (hour == 24)
 				{
 					hour = 0;

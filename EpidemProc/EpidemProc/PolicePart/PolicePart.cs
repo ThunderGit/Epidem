@@ -42,7 +42,7 @@ namespace EpidemProc.PolPart
 			}
 		}
 
-		public static void MillitaryAction(Troop[] troops,ref Citizen[] citizens, Hospital[] hospitals, Police[] polices, int status)
+		public static void PoliceAction(Troop[] troops,ref Citizen[] citizens, Hospital[] hospitals, Police[] polices, int status)
 		{
 			if(Equals(status, MillitaryStatus.StateOfMillitary))
 			{

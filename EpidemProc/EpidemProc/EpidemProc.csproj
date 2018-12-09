@@ -55,9 +55,12 @@
     <Compile Include="Enum\Profession.cs" />
     <Compile Include="LifeSimulator\WorkCondition.cs" />
     <Compile Include="Loader.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="MedicinePart\Conditions.cs" />
     <Compile Include="MedicinePart\Counters.cs" />
     <Compile Include="MedicinePart\MedicinePart.cs" />
+    <Compile Include="PolicePart\PolicePart.cs" />
+    <Compile Include="MillitaryPart\MillitaryPart.cs" />
     <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\Home.cs" />
     <Compile Include="Model\Troop.cs" />

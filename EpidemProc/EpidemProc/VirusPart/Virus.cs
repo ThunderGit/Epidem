@@ -12,8 +12,6 @@ namespace EpidemProc.VirusPart
     {
         //радиус заражения
         public int DangerInfectRadius;
-        //сила заражения
-        public int Power;
         //сложность лечения
         public int Difficult;
 		//минимальная для заражения температура
@@ -47,7 +45,6 @@ namespace EpidemProc.VirusPart
 		public Virus()
         {
             DangerInfectRadius = 1;
-            Power = 1;
             Difficult = 1;
 			MinInfectT = -5;
 			MaxInfectT = 25;
@@ -161,7 +158,7 @@ namespace EpidemProc.VirusPart
 			if (Infected.Hospitalized == true) { Infected.Health+=2; }
 			Infected.HealthStatus = ChangeHealthStatus(Infected.Health);
 		}
-		public void Damaged(ref Citizen[] _Citizens, Weather weather, int status, ref int countOfDeath)
+		public void Damaged(ref Citizen[] _Citizens, Weather weather, int status)
 		{
 			if (weather.t >= MaxComfortT && weather.t <= MinComfortT) return;
 			else
@@ -171,19 +168,66 @@ namespace EpidemProc.VirusPart
                     if (_Citizens[i].WasSick == true)
                     {
                         TryDamaged(weather, ref _Citizens[i], status);
-                        if (_Citizens[i].Health <= 0)
-                        {
-                            List<Citizen> lst = new List<Citizen>(_Citizens);
-                            lst.Remove(_Citizens[i]);
-                            _Citizens = lst.ToArray();
-							countOfDeath++;
-						}
                     }
                 }
 			}
 		}
+
+		//смерть
+		public void Death(ref Citizen[] citizens, ref Doctor [] doctors, ref Policeman [] policemen, ref Troop [] troops, ref int countOfDeath)
+		{
+			for (int i = 0; i < citizens.Length; i++)
+			{
+				if (citizens[i].Health <= 0)
+				{
+					bool specFind = false;
+					for(int j = 0; j < doctors.Length; j++)
+					{
+						if(doctors[j].CitizenId == citizens[i].Id)
+						{
+							List<Doctor> dlst = new List<Doctor>(doctors);
+							dlst.Remove(doctors[j]);
+							doctors = dlst.ToArray();
+							specFind = true;
+							break;
+						}
+					}
+					if(!specFind)
+					{
+						for (int j = 0; j < policemen.Length; j++)
+						{
+							if (policemen[j].CitizenId == citizens[i].Id)
+							{
+								List<Policeman> plst = new List<Policeman>(policemen);
+								plst.Remove(policemen[j]);
+								policemen = plst.ToArray();
+								specFind = true;
+								break;
+							}
+						}
+					}
+					if (!specFind)
+					{
+						for (int j = 0; j < policemen.Length; j++)
+						{
+							if (policemen[j].CitizenId == citizens[i].Id)
+							{
+								List<Troop> tlst = new List<Troop>(troops);
+								tlst.Remove(troops[j]);
+								troops = tlst.ToArray();
+								specFind = true;
+							}
+						}
+					}
+					List<Citizen> lst = new List<Citizen>(citizens);
+					lst.Remove(citizens[i]);
+					citizens = lst.ToArray();
+					countOfDeath++;
+				}
+			}
+		}
 		//мутация
-        public void Mutate(int NumberOfCitizens, int NumberOfInfected)
+		public void Mutate(int NumberOfCitizens, int NumberOfInfected)
         {
             if (GeneralOperations.Success((NumberOfInfected / NumberOfCitizens) * 100)) return;
 			int coefOfMutate;

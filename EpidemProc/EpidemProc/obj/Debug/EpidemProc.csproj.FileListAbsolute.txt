@@ -5,4 +5,3 @@ D:\Учеба\Epidem\EpidemProc\EpidemProc\bin\Debug\EpidemProc.exe
 D:\Учеба\Epidem\EpidemProc\EpidemProc\bin\Debug\EpidemProc.pdb
 D:\Учеба\Epidem\EpidemProc\EpidemProc\obj\Debug\EpidemProc.exe
 D:\Учеба\Epidem\EpidemProc\EpidemProc\obj\Debug\EpidemProc.pdb
-D:\Учеба\Epidem\EpidemProc\EpidemProc\obj\Debug\EpidemProc.csprojAssemblyReference.cache

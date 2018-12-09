@@ -9,6 +9,8 @@ using System.Data;
 using System.Data.SqlClient;
 using EpidemProc.MedPart;
 using EpidemProc.Scientist;
+using EpidemProc.MilPart;
+using EpidemProc.PolPart;
 
 namespace EpidemProc
 {
@@ -69,6 +71,8 @@ namespace EpidemProc
 			{
 				//перенмещение жителей
 				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour, status);
+				PolicePart.PoliceAction(_Troop,ref _Citizens, _Hospital, _Police, status);
+				MillitaryPart.MillitaryAction(_Millitary, _Troop, ref _Citizens, _Hospital, _Police, status);
 				//заражение(если возможно)
 				virus.Infect(ref _Citizens, weather, status);
 				//в начале каждого нового дня поражение зараженных

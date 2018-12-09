@@ -61,7 +61,6 @@ namespace EpidemProc.LifeSimulator
 			{
 				if (!_Citizens[i].Hospitalized)
 				{
-
 					if (HomeCondition.AtHomeCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker) || _Citizens[i].SickLeave || Equals(status, MillitaryStatus.StateOfMillitary))
 					{
 						AtHome(ref _Citizens[i], _Homes);

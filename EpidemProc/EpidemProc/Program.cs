@@ -7,6 +7,7 @@ using EpidemProc.Enum;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using EpidemProc.MedicinePart;
 
 namespace EpidemProc
 {
@@ -56,22 +57,34 @@ namespace EpidemProc
 			int totalDay = 0;
 			int currentDay = 335;
 
+			int status = 0;
+
 			Virus virus = new Virus();
 			Weather weather = new Weather();
+			MedicinePart med = new MedicinePart();
 			while (totalDay != 365)
 			{
 				//перенмещение жителей
 				Life.Lifemove(_Citizens, _Facture, _Home, _Shop, day, hour);
 				//заражение(если возможно)
-				virus.Infect(ref _Citizens, weather);
-				//в начале каждого нового дня заражение
+				virus.Infect(ref _Citizens, weather, status);
+				//в начале каждого нового дня поражение зараженных
 				if(hour == 0)
+					virus.Damaged(ref _Citizens, weather, status);
+				//мутация раз в неделю
+				if (Equals(day, Days.Monday))
 				{
-					virus.Damaged(ref _Citizens, weather);
+					int countOfInfected = 0;
+					for (int i = 0; i < _Citizens.Length; i++)
+						if (_Citizens[i].WasSick)
+							countOfInfected++;
+					virus.Mutate(_Citizens.Length, countOfInfected);
 				}
-				Console.WriteLine(weather.t);
-
-
+				//оращение к врачу
+				if (hour == 0)
+				{
+					
+				}
 				//конец цикла перепросчет дневной статистики и изменение погоды
 				hour++;
 				if (hour == 24)

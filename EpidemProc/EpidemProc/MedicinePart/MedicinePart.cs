@@ -11,7 +11,7 @@ using EpidemProc;
 
 
 
-namespace EpidemProc.MedicinePart
+namespace EpidemProc.MedPart
 {
 	class MedicinePart
 	{
@@ -100,11 +100,11 @@ namespace EpidemProc.MedicinePart
 		//если здоров или ок, то не обращается. Если слабая болезнь но трудоголик то не обращается
 		private bool InviteCondition(Citizen patient)
 		{
-			if (Equals(patient.HealthStatus, HealthStatus.Critical)
+			if ((Equals(patient.HealthStatus, HealthStatus.Critical)
 				||
 				Equals(patient.HealthStatus, HealthStatus.SeriousCold)
 				||
-				(Equals(patient.HealthStatus, HealthStatus.MildСold) && !patient.HardWorker))
+				(Equals(patient.HealthStatus, HealthStatus.MildСold) && !patient.HardWorker)) && patient.WasSick)
 			{
 				return GeneralOperations.Success(patient.TrustTheDoctor);
 			}

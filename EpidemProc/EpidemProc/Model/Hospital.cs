@@ -12,12 +12,13 @@ namespace EpidemProc.Models
         public int X { get; set; }
         public int Y { get; set; }
 		public int CountOfVisiters{ get; set; }
+		public int CountOfHospitalized { get; set; }
 
 
 		public static SqlCommand PrepareCommand(SqlCommand command)
         {
             Hospital _hospital = new Hospital();
-            command.CommandText = @"select ID, IS_PRIVATE, CORRUPTION_LEVEL, COUNT_OF_MAX_HOSPITALIZED, X, Y, COUNT_OF_VISITERS from dbo.HOSPITAL";
+            command.CommandText = @"select ID, IS_PRIVATE, CORRUPTION_LEVEL, COUNT_OF_MAX_HOSPITALIZED, X, Y, COUNT_OF_VISITERS, COUNT_OF_HOSPITALIZED from dbo.HOSPITAL";
 
             command.Parameters.Add("ID",                        SqlDbType.Int).Value = _hospital.Id;
             command.Parameters.Add("CORRUPTION_LEVEL",          SqlDbType.Int).Value = _hospital.CorruptionLevel;
@@ -25,6 +26,7 @@ namespace EpidemProc.Models
             command.Parameters.Add("X",                         SqlDbType.Int).Value = _hospital.X;
             command.Parameters.Add("Y",                         SqlDbType.Int).Value = _hospital.Y;
 			command.Parameters.Add("COUNT_OF_VISITERS",			SqlDbType.Int).Value = _hospital.CountOfVisiters;
+			command.Parameters.Add("COUNT_OF_HOSPITALIZED",		SqlDbType.Int).Value = _hospital.CountOfHospitalized;
 			return command;
         }
         public static Hospital Get(SqlDataReader reader)
@@ -37,7 +39,8 @@ namespace EpidemProc.Models
                 MaxHospitalized = reader.GetInt32(i++),
                 X = reader.GetInt32(i++),
                 Y = reader.GetInt32(i++),
-				CountOfVisiters = reader.GetInt32(i++)
+				CountOfVisiters = reader.GetInt32(i++),
+				CountOfHospitalized = reader.GetInt32(i++)
 			};
         }
     }

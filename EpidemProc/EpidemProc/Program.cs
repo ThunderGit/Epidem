@@ -82,7 +82,11 @@ namespace EpidemProc
 				}
 				//оращение к врачу
 				if (hour == 9)
-					med.Invites(ref _Citizens, ref _Hospital, _Home);
+				{
+					med.Invites(ref _Citizens, ref _Hospital, _Home, _Doctor);
+					med.Hospitalizations(ref _Citizens, ref _Hospital, _Home);
+					med.LeavesHospital(ref _Citizens, ref _Hospital, _Home);
+				}
 				//конец цикла перепросчет дневной статистики и изменение погоды
 				hour++;
 				if (hour == 24)

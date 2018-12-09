@@ -57,25 +57,29 @@ namespace EpidemProc.LifeSimulator
 
         public static void Lifemove(Citizen[] _Citizens, Facture[] _Factures, Home[] _Homes, Facture[] _Shops, int Day, int Hour, int status)
         {
-            for (int i = 0; i < _Citizens.Length; i++)
-            {
-                if (HomeCondition.AtHomeCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker) || _Citizens[i].SickLeave || Equals(status, MillitaryStatus.StateOfMillitary))
-                {
-                    AtHome(ref _Citizens[i], _Homes);
-                }
-                else if (WorkCondition.AtWorkCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker))
-                {
-                    AtWorkplace(ref _Citizens[i], _Factures);
-                }
-				else if(EntertainmentCondition.AtEntertainmentCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker))
-                {
-                    InMagazine(ref _Citizens[i], _Shops);
-                }
-				else if(GoAwayCondition.AwayCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker) || !Equals(status, MillitaryStatus.StateOfEmergency))
-                {
-                    GoAway(ref _Citizens[i]);
-                }
-            }
+			for (int i = 0; i < _Citizens.Length; i++)
+			{
+				if (!_Citizens[i].Hospitalized)
+				{
+
+					if (HomeCondition.AtHomeCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker) || _Citizens[i].SickLeave || Equals(status, MillitaryStatus.StateOfMillitary))
+					{
+						AtHome(ref _Citizens[i], _Homes);
+					}
+					else if (WorkCondition.AtWorkCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker))
+					{
+						AtWorkplace(ref _Citizens[i], _Factures);
+					}
+					else if (EntertainmentCondition.AtEntertainmentCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker))
+					{
+						InMagazine(ref _Citizens[i], _Shops);
+					}
+					else if (GoAwayCondition.AwayCondition(Day, Hour, _Citizens[i].ProfessionId, _Citizens[i].HardWorker) || !Equals(status, MillitaryStatus.StateOfEmergency))
+					{
+						GoAway(ref _Citizens[i]);
+					}
+				}
+			}
         }
     }
 }

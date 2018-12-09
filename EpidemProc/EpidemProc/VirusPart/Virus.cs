@@ -153,7 +153,10 @@ namespace EpidemProc.VirusPart
 		{
 			Infected.Immunity -= immunityDamaged/2 + 1;
 			Infected.Health -= (100 - Infected.Immunity)/100 * SumOfTotalDamage() / 2;
+			//влияние статуса повышенного внимания
 			if(status == 1){ Infected.Immunity += 2; }
+			//влияние госпитализации
+			if (Infected.Hospitalized == true) { Infected.Health+=2; }
 			Infected.HealthStatus = ChangeHealthStatus(Infected.Health);
 		}
 		public void Damaged(ref Citizen[] _Citizens, Weather weather, int status)

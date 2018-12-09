@@ -28,11 +28,19 @@ namespace EpidemProc.Region
 			CorruptionLevel = _CorruptionLevel;
 			Sum = 0;
 		}
+
+		public float SickStatus(bool Leave, bool Hospitalized)
+		{
+			if (Hospitalized) return 0;
+			else if (Leave) return 0.5f;
+			else return 1;
+		}
+
 		public long Budget(Citizen [] citizens)
 		{
 			Sum = 0;
 			for (int i = 0; i < citizens.Length; i++)
-				Sum += citizens[i].Salary;
+				Sum += Convert.ToInt32(citizens[i].Salary * SickStatus(citizens[i].SickLeave, citizens[i].Hospitalized));
 			return Sum;
 		}
 

@@ -14,14 +14,14 @@ namespace EpidemProc.Scientist
 	class ScientistPart
 	{
 		public static int CoefOfEffective = 250000;
-		public static int Research(Hospital[] hospitals, Economic E)
+		public static int Research(Hospital[] hospitals, Economic E, Virus V)
 		{
 			long Sum = 0;
 			for(int i  = 0; i < hospitals.Length; i++)
 			{
 				Sum += (hospitals[i].CorruptionLevel * E.HospitalBudget()) / (100 * hospitals.Length);
 			}
-			Sum += E.EducationBudget();
+			Sum += E.EducationBudget() * (10 - V.Difficult) / 10;
 
 			return Convert.ToInt32(Sum / CoefOfEffective);
 		}

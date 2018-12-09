@@ -60,6 +60,7 @@ namespace EpidemProc
 
 			int status = 0;
 			int researchProgress = 0;
+			int countOfDeath = 0;
 			Virus virus = new Virus();
 			Weather weather = new Weather();
 			MedicinePart med = new MedicinePart();
@@ -72,7 +73,7 @@ namespace EpidemProc
 				virus.Infect(ref _Citizens, weather, status);
 				//в начале каждого нового дня поражение зараженных
 				if(hour == 0)
-					virus.Damaged(ref _Citizens, weather, status);
+					virus.Damaged(ref _Citizens, weather, status, ref countOfDeath);
 				//мутация раз в неделю
 				if (Equals(day, Days.Monday))
 				{
@@ -83,7 +84,7 @@ namespace EpidemProc
 					virus.Mutate(_Citizens.Length, countOfInfected);
 					if(Equals(status, MillitaryStatus.StateOfEmergency) || Equals(status, MillitaryStatus.StateOfMillitary))
 					{
-						researchProgress += ScientistPart.Research(hospitals, E);
+						researchProgress += ScientistPart.Research(_Hospital, Econimic, virus);
 					}
 				}
 				//оращение к врачу

@@ -155,11 +155,13 @@ namespace EpidemProc.VirusPart
 			Infected.Health -= (100 - Infected.Immunity)/100 * SumOfTotalDamage() / 2;
 			//влияние статуса повышенного внимания
 			if(status == 1){ Infected.Immunity += 2; }
+			//влияние больничного
+			if (Infected.SickLeave == true) { Infected.Health++; }
 			//влияние госпитализации
 			if (Infected.Hospitalized == true) { Infected.Health+=2; }
 			Infected.HealthStatus = ChangeHealthStatus(Infected.Health);
 		}
-		public void Damaged(ref Citizen[] _Citizens, Weather weather, int status)
+		public void Damaged(ref Citizen[] _Citizens, Weather weather, int status, ref int countOfDeath)
 		{
 			if (weather.t >= MaxComfortT && weather.t <= MinComfortT) return;
 			else
@@ -174,7 +176,8 @@ namespace EpidemProc.VirusPart
                             List<Citizen> lst = new List<Citizen>(_Citizens);
                             lst.Remove(_Citizens[i]);
                             _Citizens = lst.ToArray();
-                        }
+							countOfDeath++;
+						}
                     }
                 }
 			}

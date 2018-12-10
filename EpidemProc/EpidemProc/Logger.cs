@@ -97,6 +97,11 @@ namespace EpidemProc
 					}
 				}
 			}
+			for (int j = 0; j < LI.Length; j++)
+			{
+
+				LI[j].SaveToDB();
+			}
 		}
 		private static void Log_Global(int iter, int day, int hour, Citizen[] _Citizens, Policeman[] policemen, Doctor[] doctors, Troop[] troops, Weather weather, int status, int researchProgress, int countOfDeath)
 		{
@@ -118,6 +123,7 @@ namespace EpidemProc
 				Research = researchProgress,
 				RegStatus = status,
 			};
+			LG.SaveToDB();
 		}
 		private static void Log_Med_Stat(Citizen[] _Citizens, int iter)
 		{
@@ -136,6 +142,7 @@ namespace EpidemProc
 				CountOfInfected = countInf,
 				CountOfCritical = countCrit
 			};
+			LMS.SaveToDB();
 		}
 		private static void Log_Virus(Virus virus, int iter)
 		{
@@ -161,6 +168,7 @@ namespace EpidemProc
 				lyphaticDamaged = virus.lyphaticDamaged,
 				immunityDamaged = virus.immunityDamaged
 			};
+			LV.SaveToDB();
 		}
 
 		public static void Run(Citizen[] _Citizens, Policeman[] P, Doctor[] D, Troop[] T, Police[] _Police,

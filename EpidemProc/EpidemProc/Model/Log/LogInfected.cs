@@ -49,8 +49,7 @@ namespace EpidemProc.Model.Log
                     command.CommandType = CommandType.Text;
                     //Insert Data
 
-                    using (SqlCommand cmd = new SqlCommand(@"INSERT INTO 
-TABLE LOG_GLOBAL (ITERRATION, X,Y,COUNT_OF_INFECTED, COUNT_OF_HEALTHY) 
+                    using (SqlCommand cmd = new SqlCommand(@"INSERT INTO LOG_GLOBAL (ITERRATION, X,Y,COUNT_OF_INFECTED, COUNT_OF_HEALTHY) 
 VALUES ( @iter, @x, @y,@CofI,@CofH)", cn))
                     {
 

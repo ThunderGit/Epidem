@@ -1,1 +1,11 @@
 E:\Andrew\GitHub\Epidem\EpidemVisualisator\EpidemVisualisator\bin\Debug\EpidemVisualisator.exe.config
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\bin\Debug\EpidemVisualisator.exe.config
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\bin\Debug\EpidemVisualisator.exe
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\bin\Debug\EpidemVisualisator.pdb
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.csprojAssemblyReference.cache
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.Form1.resources
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.Properties.Resources.resources
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.csproj.GenerateResource.cache
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.csproj.CoreCompileInputs.cache
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.exe
+D:\Учеба\Epidem\EpidemVisualisator\EpidemVisualisator\obj\Debug\EpidemVisualisator.pdb

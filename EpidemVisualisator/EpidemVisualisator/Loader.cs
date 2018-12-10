@@ -22,15 +22,15 @@ namespace EpidemProc
             cn.ConnectionString = connect.ConnectionString;
         }
 
-        public void Load(ref LogGlobal [] globals, ref LogMedStatistic[] medStatistics, ref LogVirus[] viruses, ref LogInfected[] infecteds)
+        public void Load(ref Global [] globals, ref MedStatistic[] medStatistics, ref Virus[] viruses, ref Infected[] infecteds)
         {
             try
             {
 				//Вытягивание
-				globals = GetData<LogGlobal>(LogGlobal.PrepareCommand, LogGlobal.Get).ToArray();
-				medStatistics = GetData<LogMedStatistic>(LogMedStatistic.PrepareCommand, LogMedStatistic.Get).ToArray();
-				viruses = GetData<LogVirus>(LogVirus.PrepareCommand, LogVirus.Get).ToArray();
-				infecteds = GetData<LogInfected>(LogInfected.PrepareCommand, LogInfected.Get).ToArray();
+				globals = GetData<Global>(Global.PrepareCommand, Global.Get).ToArray();
+				medStatistics = GetData<MedStatistic>(MedStatistic.PrepareCommand, MedStatistic.Get).ToArray();
+				viruses = GetData<Virus>(Virus.PrepareCommand, Virus.Get).ToArray();
+				infecteds = GetData<Infected>(Infected.PrepareCommand, Infected.Get).ToArray();
             }
             catch (Exception ex)
             {

@@ -56,10 +56,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Loader.cs" />
-    <Compile Include="Models\LogGlobal.cs" />
-    <Compile Include="Models\LogInfected.cs" />
-    <Compile Include="Models\LogMedStatistic.cs" />
-    <Compile Include="Models\LogVirus.cs" />
+    <Compile Include="Models\Global.cs" />
+    <Compile Include="Models\Infected.cs" />
+    <Compile Include="Models\MedStatistic.cs" />
+    <Compile Include="Models\Virus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

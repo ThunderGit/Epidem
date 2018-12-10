@@ -59,7 +59,7 @@ namespace EpidemProc
 			int hour = 0;
 			int totalDay = 0;
 			int currentDay = 335;
-			long iterator = 0;
+			int iterator = 0;
 			int status = 0;
 			int researchProgress = 0;
 			int countOfDeath = 0;
@@ -107,6 +107,10 @@ namespace EpidemProc
 					status = Medstat.Statistic(_Hospital, _Citizens.Length, countOfDeath);
 				}
 				//конец цикла перепросчет дневной статистики и изменение погоды
+				Logger.Log_Infected(iterator, _Citizens, _Police, _Hospital, _Millitary, _Facture, _Home);
+				Logger.Log_Global(iterator, day, hour, _Citizens, _Policeman, _Doctor, _Troop, weather, status, researchProgress, countOfDeath);
+				Logger.Log_Med_Stat(_Citizens, iterator);
+				Logger.Log_Virus(virus, iterator);
 				hour++;
 				iterator++;
 				if (hour == 24)

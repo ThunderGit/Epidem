@@ -34,5 +34,31 @@ namespace EpidemVisualisator
 		{
 			
 		}
+
+		private void MedHealthyText_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void MedDeathText_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void MedCriricalText_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+		private void MedInfectedText_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+
+
+		private void WetText_TextChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

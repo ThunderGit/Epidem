@@ -44,12 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Days.cs" />
+    <Compile Include="Enums\FactureType.cs" />
+    <Compile Include="Enums\HealthStatus.cs" />
+    <Compile Include="Enums\MillitaryStatus.cs" />
+    <Compile Include="Enums\Profession.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Loader.cs" />
+    <Compile Include="Models\LogGlobal.cs" />
+    <Compile Include="Models\LogInfected.cs" />
+    <Compile Include="Models\LogMedStatistic.cs" />
+    <Compile Include="Models\LogVirus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

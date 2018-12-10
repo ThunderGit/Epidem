@@ -18,10 +18,85 @@ namespace EpidemProc
 	class Logger
 	{
 
-		private static void Log_Infected(long iter, Citizen[] _Citizens, Police[] _Police,
-		Hospital[] _Hospital, Millitary[] _Military, Facture[] _Facture, Home[] _home)
+		private static void Log_Infected(int iter, Citizen[] citizens, Police[] polices,
+		Hospital[] hospitals, Millitary[] millitaries, Facture[] factures, Home[] homes)
 		{
-
+			LogInfected[] LI = null;
+			List<LogInfected> LLI = null;
+			
+			for (int i = 0; i < polices.Length; i++)
+			{
+				LLI.Add(new LogInfected
+				{
+					Id = 0,
+					Iteration = iter,
+					X = polices[i].X,
+					Y = polices[i].Y,
+					CountOfHealthy = 0,
+					CountOfInfected = 0
+				});
+			}
+			for (int i = 0; i < hospitals.Length; i++)
+			{
+				LLI.Add(new LogInfected
+				{
+					Id = 0,
+					Iteration = iter,
+					X = hospitals[i].X,
+					Y = hospitals[i].Y,
+					CountOfHealthy = 0,
+					CountOfInfected = 0
+				});
+			}
+			for (int i = 0; i < millitaries.Length; i++)
+			{
+				LLI.Add(new LogInfected
+				{
+					Id = 0,
+					Iteration = iter,
+					X = millitaries[i].X,
+					Y = millitaries[i].Y,
+					CountOfHealthy = 0,
+					CountOfInfected = 0
+				});
+			}
+			for (int i = 0; i < factures.Length; i++)
+			{
+				LLI.Add(new LogInfected
+				{
+					Id = 0,
+					Iteration = iter,
+					X = factures[i].X,
+					Y = factures[i].Y,
+					CountOfHealthy = 0,
+					CountOfInfected = 0
+				});
+			}
+			for (int i = 0; i < homes.Length; i++)
+			{
+				LLI.Add(new LogInfected
+				{
+					Id = 0,
+					Iteration = iter,
+					X = homes[i].X,
+					Y = homes[i].Y,
+					CountOfHealthy = 0,
+					CountOfInfected = 0
+				});
+			}
+			LI = LLI.ToArray();
+			for (int i = 0; i < citizens.Length; i++)
+			{
+				for (int j = 0; j < LI.Length; j++)
+				{
+					if (citizens[i].X == LI[j].X && citizens[i].Y == LI[j].Y)
+					{
+						if (citizens[i].WasSick) LI[j].CountOfInfected++;
+						else LI[j].CountOfHealthy++;
+						break;
+					}
+				}
+			}
 		}
 		private static void Log_Global(int iter, int day, int hour, Citizen[] _Citizens, Policeman[] policemen, Doctor[] doctors, Troop[] troops, Weather weather, int status, int researchProgress, int countOfDeath)
 		{
@@ -43,7 +118,6 @@ namespace EpidemProc
 				Research = researchProgress,
 				RegStatus = status,
 			};
-
 		}
 		private static void Log_Med_Stat(Citizen[] _Citizens, int iter)
 		{
@@ -61,6 +135,31 @@ namespace EpidemProc
 				CountOfHealthy = _Citizens.Length - countInf,
 				CountOfInfected = countInf,
 				CountOfCritical = countCrit
+			};
+		}
+		private static void Log_Virus(Virus virus, int iter)
+		{
+			LogVirus LV = new LogVirus
+			{
+				Id = 0,
+				Iteration = iter,
+				Difficult = virus.Difficult,
+				MinInfectT = virus.MinInfectT,
+				MaxInfectT = virus.MaxInfectT,
+				MinComfortT = virus.MinComfortT,
+				MaxComfortT = virus.MaxComfortT,
+				WetProtect = virus.WetProtect,
+				skeletonDamaged = virus.skeletonDamaged,
+				muscleDamaged = virus.muscleDamaged,
+				respiratoryDamaged = virus.respiratoryDamaged,
+				circulatoryDamaged = virus.circulatoryDamaged,
+				diureticDamaged = virus.diureticDamaged,
+				digestiveDamaged = virus.digestiveDamaged,
+				nervousDamaged = virus.nervousDamaged,
+				reproductiveDamaged = virus.reproductiveDamaged,
+				sensoryDamaged = virus.sensoryDamaged,
+				lyphaticDamaged = virus.lyphaticDamaged,
+				immunityDamaged = virus.immunityDamaged
 			};
 		}
 
